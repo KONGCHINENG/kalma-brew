@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalma Brew Ipoh x Souv · Late-night coffee in Ipoh</title>
+  <meta name="description" content="Kalma Brew Ipoh x Souv — a late-night coffee space on the 3rd floor of Jalan Sultan Idris Shah, Ipoh. Signature lattes, chocolate, soufflé pancakes and board games. Open till 2am, closed Tuesdays. Rated 4.8 on Google." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --night: #10181a;
+      --night-2: #172225;
+      --night-3: #1f2d30;
+      --cream: #f4efe6;
+      --cream-2: #ebe3d5;
+      --ink: #16201f;
+      --ink-soft: #46504e;
+      --muted: #7c8583;
+      --line: #ddd5c6;
+      --line-dark: rgba(244, 239, 230, .12);
+      --amber: #e0a85c;
+      --amber-dark: #c98f42;
+      --wa: #25d366;
+      --radius: 20px;
+      --shadow: 0 24px 50px -28px rgba(16, 24, 26, .45);
+      --font-display: "Instrument Serif", Georgia, serif;
+      --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      margin: 0; background: var(--cream); color: var(--ink);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+    .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+    .icon { width: 20px; height: 20px; flex-shrink: 0; }
+    h1, h2, h3 { margin: 0; line-height: 1.05; }
+    h1, h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: -.01em; }
+    h1 em, h2 em { color: var(--amber); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--amber-dark);
+    }
+    .eyebrow::before { content: ""; width: 24px; height: 1.5px; background: currentColor; }
+    section { padding: 104px 0; }
+    .section-head { max-width: 640px; margin-bottom: 48px; }
+    .section-head h2 { font-size: clamp(40px, 6vw, 64px); margin-top: 14px; }
+    .section-head p { color: var(--ink-soft); margin: 16px 0 0; font-size: 17px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 50px; padding: 0 26px; border-radius: 999px; border: 0; cursor: pointer;
+      font: 600 15px var(--font-body); text-decoration: none;
+      transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-amber { background: var(--amber); color: var(--night); }
+    .btn-amber:hover { background: var(--cream); }
+    .btn-line { border: 1.5px solid var(--line-dark); color: var(--cream); }
+    .btn-line:hover { border-color: var(--cream); }
+    .btn-dark { background: var(--night); color: var(--cream); }
+    .btn-dark:hover { background: var(--amber-dark); color: var(--night); }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(16, 24, 26, .86); backdrop-filter: saturate(150%) blur(14px);
+      border-bottom: 1px solid var(--line-dark); color: var(--cream);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-mark {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--amber); color: var(--night);
+      display: grid; place-items: center; font-family: var(--font-display); font-size: 22px; line-height: 1;
+    }
+    .brand-name { font-family: var(--font-display); font-size: 24px; line-height: 1; }
+    .brand-name small { font-family: var(--font-body); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-left: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { text-decoration: none; font-weight: 500; font-size: 15px; color: #c3c9c6; transition: color .2s ease; }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-cta { min-height: 42px; padding: 0 18px; font-size: 14px; }
+    .menu-toggle {
+      display: none; width: 44px; height: 44px; border: 0; background: none; cursor: pointer;
+      border-radius: 10px; color: var(--cream);
+    }
+
+    /* Hero */
+    .hero { background: var(--night); color: var(--cream); padding: 80px 0 112px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; width: 720px; height: 720px; right: -200px; top: -220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(224, 168, 92, .22), transparent 62%); pointer-events: none;
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: center; }
+    .hero .eyebrow { color: var(--amber); }
+    .hero h1 { font-size: clamp(56px, 9vw, 112px); margin: 20px 0 0; }
+    .hero-lead { font-size: 18px; color: #b9c1be; max-width: 500px; margin: 26px 0 0; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+    .hero-facts { display: flex; flex-wrap: wrap; gap: 36px; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line-dark); }
+    .fact strong { display: block; font-family: var(--font-display); font-size: 32px; font-weight: 400; line-height: 1.1; }
+    .fact span { font-size: 14px; color: var(--muted); }
+    .stars { color: var(--amber); letter-spacing: 1px; font-size: 16px; }
+
+    /* Hero visual: a night window */
+    .hero-visual { position: relative; display: grid; place-items: center; }
+    .window {
+      width: min(380px, 100%); aspect-ratio: 4 / 5; border-radius: 200px 200px 24px 24px;
+      background: linear-gradient(180deg, #23383b 0%, #172426 60%, #10181a 100%);
+      border: 1.5px solid var(--line-dark); position: relative; overflow: hidden;
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, .35);
+    }
+    .window svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .moon { animation: glow 6s ease-in-out infinite; }
+    @keyframes glow { 50% { opacity: .75; } }
+    .tag {
+      position: absolute; background: var(--cream); color: var(--ink); border-radius: 16px; padding: 12px 16px;
+      box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px; font-size: 13px; line-height: 1.35;
+    }
+    .tag b { display: block; font-size: 15px; }
+    .tag-open { left: -4%; bottom: 14%; }
+    .tag-floor { right: -2%; top: 16%; background: var(--amber); color: var(--night); font-weight: 600; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #1fa45a; box-shadow: 0 0 0 4px rgba(31, 164, 90, .2); flex-shrink: 0; }
+    .dot.closed { background: #9a9a9a; box-shadow: 0 0 0 4px rgba(154, 154, 154, .2); }
+
+    /* Strip */
+    .strip { background: var(--amber); color: var(--night); padding: 16px 0; overflow: hidden; }
+    .strip-track { display: flex; gap: 36px; width: max-content; animation: marquee 36s linear infinite; }
+    .strip span { font-family: var(--font-display); font-size: 24px; white-space: nowrap; display: inline-flex; align-items: center; gap: 36px; }
+    .strip span::after { content: "☾"; font-size: 16px; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 72px; align-items: start; }
+    .about-copy h2 { font-size: clamp(40px, 6vw, 64px); margin: 14px 0 24px; }
+    .about-copy p { color: var(--ink-soft); font-size: 17px; margin: 0 0 16px; }
+    .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pillar {
+      padding: 26px; border: 1px solid var(--line); border-radius: var(--radius); background: #fbf8f2;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .pillar:hover { border-color: var(--ink); transform: translateY(-2px); }
+    .pillar-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--night); color: var(--amber); display: grid; place-items: center; margin-bottom: 18px; }
+    .pillar h3 { font-size: 17px; font-weight: 700; }
+    .pillar p { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
+
+    /* Menu */
+    .menu { background: var(--cream-2); }
+    .menu-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .tab {
+      min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid var(--line);
+      background: var(--cream); font: 600 15px var(--font-body); color: var(--ink-soft); cursor: pointer;
+      transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .tab:hover { border-color: var(--ink); color: var(--ink); }
+    .tab[aria-selected="true"] { background: var(--night); border-color: var(--night); color: var(--cream); }
+    .menu-panel { background: var(--cream); border-radius: 28px; padding: 44px; box-shadow: var(--shadow); }
+    .menu-panel[hidden] { display: none; }
+    .panel-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .panel-head h3 { font-family: var(--font-display); font-weight: 400; font-size: 40px; }
+    .note { font-size: 13px; color: var(--amber-dark); font-weight: 600; letter-spacing: .04em; }
+    .items { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; list-style: none; margin: 0; padding: 0; }
+    .item { padding: 22px 0; border-bottom: 1px dashed var(--line); }
+    .item-top { display: flex; align-items: baseline; gap: 12px; }
+    .item-name { font-weight: 600; font-size: 17px; }
+    .item-tag { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--night); color: var(--amber); padding: 3px 8px; border-radius: 999px; margin-left: 8px; vertical-align: 2px; }
+    .item-fill { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); }
+    .item-price { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .item-desc { margin: 6px 0 0; color: var(--muted); font-size: 14.5px; line-height: 1.55; max-width: 44ch; }
+    .menu-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; color: var(--ink-soft); font-size: 15px; }
+
+    /* Reviews */
+    .reviews-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }
+    .score-card { background: var(--night); color: var(--cream); border-radius: 28px; padding: 40px; }
+    .score-num { font-family: var(--font-display); font-size: 96px; line-height: 1; }
+    .score-card p { color: #b9c1be; margin: 12px 0 24px; }
+    .score-card .btn-line { min-height: 44px; font-size: 14px; }
+    .quotes { display: grid; gap: 20px; }
+    .review { border: 1px solid var(--line); background: #fbf8f2; border-radius: var(--radius); padding: 32px; margin: 0; }
+    .review blockquote { margin: 0; font-family: var(--font-display); font-size: clamp(24px, 3vw, 30px); line-height: 1.25; }
+    .review figcaption { margin-top: 20px; display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--amber); color: var(--night); display: grid; place-items: center; font-weight: 700; }
+    .review figcaption b { display: block; color: var(--ink); font-size: 15px; }
+
+    /* Visit */
+    .visit { background: var(--night); color: var(--cream); }
+    .visit .section-head p { color: #b9c1be; }
+    .visit .eyebrow { color: var(--amber); }
+    .visit-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 48px; align-items: stretch; }
+    .info-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 26px; }
+    .info-list li { display: flex; gap: 16px; }
+    .info-list .pillar-icon { background: var(--night-3); margin: 0; flex-shrink: 0; }
+    .info-list h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .info-list p { margin: 0; color: #b9c1be; font-size: 15px; }
+    .info-list a { color: var(--cream); text-decoration-color: var(--amber); text-underline-offset: 3px; }
+    .info-list a:hover { color: var(--amber); }
+    .hours { width: 100%; max-width: 320px; border-collapse: collapse; font-size: 15px; color: #b9c1be; }
+    .hours td { padding: 3px 0; }
+    .hours td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    .hours tr.off td:last-child { color: var(--muted); }
+    .hours tr.today td { color: var(--amber); font-weight: 600; }
+    .visit-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+    .map { border-radius: 28px; overflow: hidden; min-height: 440px; background: var(--night-2); border: 1px solid var(--line-dark); }
+    .map iframe { width: 100%; height: 100%; min-height: 440px; border: 0; display: block; filter: grayscale(.5) contrast(1.05); }
+
+    /* Contact CTA */
+    .contact { background: var(--amber); color: var(--night); padding: 88px 0; }
+    .contact-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; }
+    .contact h2 { font-size: clamp(40px, 6vw, 68px); max-width: 640px; }
+    .contact h2 em { color: var(--cream); }
+    .contact p { margin: 14px 0 0; font-size: 17px; max-width: 520px; }
+    .contact-side { display: grid; gap: 12px; justify-items: start; }
+    .phone-link { font-family: var(--font-display); font-size: 36px; text-decoration: none; border-bottom: 1.5px solid currentColor; line-height: 1.1; }
+    .phone-link:hover { color: var(--cream); }
+
+    /* Footer */
+    footer { background: var(--night); color: var(--muted); padding: 32px 0; font-size: 14px; }
+    .foot { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+    .foot .brand { color: var(--cream); }
+    .foot-links { display: flex; gap: 20px; }
+    .foot-links a { text-decoration: none; }
+    .foot-links a:hover { color: var(--amber); }
+
+    /* Floating WhatsApp */
+    .wa-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 60;
+      width: 58px; height: 58px; border-radius: 50%; background: var(--wa); color: #fff;
+      display: grid; place-items: center; box-shadow: 0 12px 28px -8px rgba(0, 0, 0, .45);
+      transition: transform .2s ease;
+    }
+    .wa-float:hover { transform: scale(1.06); }
+    .wa-float svg { width: 30px; height: 30px; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 960px) {
+      .hero-grid, .about-grid, .visit-grid, .reviews-grid { grid-template-columns: 1fr; gap: 48px; }
+      .window { width: min(300px, 76vw); }
+      .tag-open { left: 0; }
+      .tag-floor { right: 0; }
+    }
+    @media (max-width: 760px) {
+      section { padding: 76px 0; }
+      .hero { padding: 48px 0 80px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-cta { display: none; }
+      .nav-links {
+        position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--night); border-bottom: 1px solid var(--line-dark); padding: 8px 16px 16px;
+        display: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 14px 0; font-size: 17px; border-bottom: 1px solid var(--line-dark); }
+      .pillars { grid-template-columns: 1fr; }
+      .menu-panel { padding: 26px 20px; border-radius: 22px; }
+      .panel-head h3 { font-size: 32px; }
+      .items { grid-template-columns: 1fr; }
+      .tabs-scroll { overflow-x: auto; margin-inline: -16px; padding-inline: 16px; }
+      .menu-tabs { flex-wrap: nowrap; width: max-content; }
+      .score-card { padding: 32px 26px; }
+      .review { padding: 26px; }
+      .map, .map iframe { min-height: 320px; }
+      .phone-link { font-size: 30px; }
+      .wa-float { right: 16px; bottom: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .strip-track, .moon { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20M7 8v3M12 8v3M17 8v3M7 4h.01M12 4h.01M17 4h.01"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 22 2l-9 19-2-8-8-2Z"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.17-3.48-8.41Z"/></symbol>
+  </svg>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand" aria-label="Kalma Brew, home">
+        <span class="brand-mark" aria-hidden="true">k</span>
+        <span class="brand-name">Kalma Brew<small>x Souv</small></span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#visit">Visit</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-amber nav-cta wa-link" href="https://wa.me/60167682646" target="_blank" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg> Contact us
+      </a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Late-night coffee · Ipoh</span>
+          <h1>Your space<br />to stay <em>kalma</em>.</h1>
+          <p class="hero-lead">Up a vintage lift to the 3rd floor on Jalan Sultan Idris Shah: signature lattes, rich chocolate, soufflé pancakes and a shelf of board games. Open until 2am.</p>
+          <div class="hero-actions">
+            <a class="btn btn-amber" href="#menu">See the menu <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-line wa-link" href="https://wa.me/60167682646" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg> Contact us</a>
+          </div>
+          <div class="hero-facts">
+            <div class="fact"><strong>4.8 <span class="stars" aria-hidden="true">★★★★★</span></strong><span>197 Google reviews</span></div>
+            <div class="fact"><strong>Till 2am</strong><span>Closed Tuesdays</span></div>
+            <div class="fact"><strong>From RM7.90</strong><span>Coffee &amp; chocolate</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="window">
+            <svg viewBox="0 0 380 475" preserveAspectRatio="xMidYMid slice">
+              <g fill="#f4efe6" opacity=".55">
+                <circle cx="70" cy="120" r="1.6"/><circle cx="300" cy="90" r="1.4"/><circle cx="250" cy="170" r="1.2"/>
+                <circle cx="110" cy="200" r="1.2"/><circle cx="330" cy="230" r="1.6"/><circle cx="160" cy="70" r="1.2"/>
+              </g>
+              <circle class="moon" cx="250" cy="130" r="38" fill="#e0a85c"/>
+              <circle cx="266" cy="118" r="34" fill="#23383b"/>
+              <!-- skyline -->
+              <path d="M0 330h40v-60h50v40h30v-80h60v70h40v-50h50v60h40v-30h70v240H0Z" fill="#10181a"/>
+              <g fill="#e0a85c" opacity=".8">
+                <rect x="140" y="270" width="10" height="12" rx="1"/><rect x="158" y="270" width="10" height="12" rx="1"/>
+                <rect x="140" y="292" width="10" height="12" rx="1"/><rect x="230" y="300" width="10" height="12" rx="1"/>
+                <rect x="55" y="292" width="10" height="12" rx="1"/>
+              </g>
+              <!-- cup -->
+              <g transform="translate(130 340)">
+                <path d="M20 14c0-8 8-12 0-20M50 14c0-8 8-12 0-20M80 14c0-8 8-12 0-20" stroke="#f4efe6" stroke-width="3" fill="none" stroke-linecap="round" opacity=".55"/>
+                <path d="M0 24h110v38a34 34 0 0 1-34 34H34A34 34 0 0 1 0 62Z" fill="#f4efe6"/>
+                <path d="M110 36h8a16 16 0 0 1 0 32h-8" stroke="#f4efe6" stroke-width="7" fill="none"/>
+                <path d="M-20 100h150" stroke="#e0a85c" stroke-width="5" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="tag tag-floor">3rd floor ↑</div>
+          <div class="tag tag-open"><span class="dot" id="open-dot"></span><span><b id="open-status">Open now</b><span id="open-sub">Until 2am tonight</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip" aria-hidden="true">
+      <div class="strip-track">
+        <span>Spanish Latte</span><span>Malaya</span><span>Charcoal Latte</span><span>Strawberry Chocolate</span><span>Soufflé Pancakes</span><span>Board Games</span><span>Caramel Macchiato</span><span>Toast Brioche</span>
+        <span>Spanish Latte</span><span>Malaya</span><span>Charcoal Latte</span><span>Strawberry Chocolate</span><span>Soufflé Pancakes</span><span>Board Games</span><span>Caramel Macchiato</span><span>Toast Brioche</span>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy reveal">
+          <span class="eyebrow">About Kalma</span>
+          <h2>Slow down. <em>Stay a while.</em></h2>
+          <p><em>Kalma</em> is how we say calm. We built this space for the hours after work and after dinner, when you want somewhere warm to sit, talk and not be rushed.</p>
+          <p>Come for a Spanish Latte, stay for a round of board games, and leave when you're ready. We're open late into the night, every day except Tuesday.</p>
+        </div>
+        <div class="pillars">
+          <div class="pillar reveal">
+            <div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg></div>
+            <h3>Open late</h3><p>Till 2am on weekends, 1am on weeknights.</p>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-dice"/></svg></div>
+            <h3>Board games</h3><p>Grab a game off the shelf and settle in with friends.</p>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-cake"/></svg></div>
+            <h3>Soufflé pancakes</h3><p>Fluffy soufflé pancakes and toast brioche, made to share.</p>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></div>
+            <h3>Space for rent</h3><p>Birthdays, meetups and small events. WhatsApp us to book.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="menu">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Drinks menu</span>
+          <h2>Something for <em>every</em> mood.</h2>
+          <p>Prices in Ringgit.</p>
+        </div>
+
+        <div class="tabs-scroll">
+          <div class="menu-tabs" role="tablist" aria-label="Menu categories">
+            <button class="tab" role="tab" id="tab-signature" aria-selected="true" aria-controls="panel-signature">Signature</button>
+            <button class="tab" role="tab" id="tab-modern" aria-selected="false" aria-controls="panel-modern" tabindex="-1">Modern Coffee</button>
+            <button class="tab" role="tab" id="tab-chocolate" aria-selected="false" aria-controls="panel-chocolate" tabindex="-1">Chocolate</button>
+            <button class="tab" role="tab" id="tab-classic" aria-selected="false" aria-controls="panel-classic" tabindex="-1">Classic Coffee</button>
+          </div>
+        </div>
+
+        <div class="menu-panel" role="tabpanel" id="panel-signature" aria-labelledby="tab-signature">
+          <div class="panel-head"><h3>Signature</h3><span class="note">Only at Kalma</span></div>
+          <ul class="items">
+            <li class="item">
+              <div class="item-top"><span class="item-name">Malaya<span class="item-tag">Local fave</span></span><span class="item-fill"></span><span class="item-price">RM 15.90</span></div>
+              <p class="item-desc">Gula Melaka, condensed milk and fresh milk combined for a creamy, fragrant and deeply satisfying taste.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Summer</span><span class="item-fill"></span><span class="item-price">RM 15.90</span></div>
+              <p class="item-desc">Espresso meets mango and honey lemon for a bold, citrusy punch that's surprisingly addictive.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Refreshing</span><span class="item-fill"></span><span class="item-price">RM 12.90</span></div>
+              <p class="item-desc">Rich espresso meets crisp apple soda and a hint of mint. A sparkling twist that wakes the senses.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Creamy</span><span class="item-fill"></span><span class="item-price">RM 15.90</span></div>
+              <p class="item-desc">Like we said, it's creamy.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-panel" role="tabpanel" id="panel-modern" aria-labelledby="tab-modern" hidden>
+          <div class="panel-head"><h3>Modern Coffee</h3><span class="note">Espresso, dressed up</span></div>
+          <ul class="items">
+            <li class="item">
+              <div class="item-top"><span class="item-name">Spanish Latte<span class="item-tag">Signature</span></span><span class="item-fill"></span><span class="item-price">RM 11.90</span></div>
+              <p class="item-desc">Rich espresso, condensed milk and a touch of vanilla. Sweet, creamy and beautifully aromatic.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Caramel Macchiato</span><span class="item-fill"></span><span class="item-price">RM 15.90</span></div>
+              <p class="item-desc">Creamy milk and bold espresso finished with a drizzle of golden caramel. Smooth, sweet and just right.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Vanilla Latte</span><span class="item-fill"></span><span class="item-price">RM 13.90</span></div>
+              <p class="item-desc">Classy.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Charcoal Latte</span><span class="item-fill"></span><span class="item-price">RM 13.90</span></div>
+              <p class="item-desc">Taste the difference.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-panel" role="tabpanel" id="panel-chocolate" aria-labelledby="tab-chocolate" hidden>
+          <div class="panel-head"><h3>Chocolate</h3><span class="note">Premium chocolate, fresh milk</span></div>
+          <ul class="items">
+            <li class="item">
+              <div class="item-top"><span class="item-name">Strawberry Chocolate</span><span class="item-fill"></span><span class="item-price">RM 15.90</span></div>
+              <p class="item-desc">Velvety chocolate blended with sweet strawberry, finished with fluffy strawberry foam.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Toffeenut Chocolate</span><span class="item-fill"></span><span class="item-price">RM 12.90</span></div>
+              <p class="item-desc">Indulgent chocolate with the nutty sweetness of toffeenut. Your comfort drink in a cup.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Almond Chocolate</span><span class="item-fill"></span><span class="item-price">RM 12.00</span></div>
+              <p class="item-desc">Velvety chocolate, creamy milk and a hint of almond. A nutty twist on our classic.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Chocolate</span><span class="item-fill"></span><span class="item-price">RM 11.90</span></div>
+              <p class="item-desc">Premium chocolate and fresh milk. Velvety, indulgent and perfectly chilled.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-panel" role="tabpanel" id="panel-classic" aria-labelledby="tab-classic" hidden>
+          <div class="panel-head"><h3>Classic Coffee</h3><span class="note">The essentials</span></div>
+          <ul class="items">
+            <li class="item">
+              <div class="item-top"><span class="item-name">Americano</span><span class="item-fill"></span><span class="item-price">RM 7.90</span></div>
+              <p class="item-desc">Freshly pulled espresso with mineral water. A clean, slightly bitter pick-me-up.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Latte</span><span class="item-fill"></span><span class="item-price">RM 9.90</span></div>
+              <p class="item-desc">Espresso poured over fresh milk. Smooth, creamy and good any time of day.</p>
+            </li>
+            <li class="item">
+              <div class="item-top"><span class="item-name">Mocha</span><span class="item-fill"></span><span class="item-price">RM 12.90</span></div>
+              <p class="item-desc">Espresso, chocolate and fresh milk. Smooth, sweet and perfectly balanced.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-foot">
+          <span>Ask about our soufflé pancakes and toast brioche at the counter.</span>
+          <a class="btn btn-dark wa-link" href="https://wa.me/60167682646" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg> Ask us on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="wrap reviews-grid">
+        <div class="reveal">
+          <div class="section-head" style="margin-bottom:32px">
+            <span class="eyebrow">Reviews</span>
+            <h2>Loved by <em>Ipoh</em> night owls.</h2>
+          </div>
+          <div class="score-card">
+            <div class="score-num">4.8</div>
+            <span class="stars" aria-label="4.8 out of 5 stars">★★★★★</span>
+            <p>From 197 reviews on Google. Guests keep mentioning the matcha, the soufflé pancakes and the board games.</p>
+            <a class="btn btn-line" href="https://maps.app.goo.gl/u1f7ob4WeLNXJQxv8" target="_blank" rel="noopener">Read on Google <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+        <div class="quotes">
+          <figure class="review reveal">
+            <blockquote>“The reviews are true, the vibes are soooooo good! Such a nice place to hang out with friends.”</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">A</span><span><b>Anis</b>Local Guide · Google review</span></figcaption>
+          </figure>
+          <figure class="review reveal">
+            <blockquote>“Kalma is a good coffee stop in Ipoh. Their menu leans on the more affordable end.”</blockquote>
+            <figcaption><span class="avatar" aria-hidden="true">D</span><span><b>Daniel Manlapaz</b>Local Guide · Google review</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" class="visit">
+      <div class="wrap visit-grid">
+        <div>
+          <div class="section-head reveal" style="margin-bottom:40px">
+            <span class="eyebrow">Visit us</span>
+            <h2>Take the lift <em>up</em>.</h2>
+            <p>We're on the 3rd floor at 158 &amp; 160 Jalan Sultan Idris Shah. Look for the vintage lift downstairs.</p>
+          </div>
+          <ul class="info-list">
+            <li>
+              <div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></div>
+              <div><h3>Address</h3><p>3rd floor, 158 &amp; 160, Jalan Sultan Idris Shah,<br />Kampung Jawa, 30000 Ipoh, Perak</p></div>
+            </li>
+            <li>
+              <div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></div>
+              <div style="flex:1">
+                <h3>Opening hours</h3>
+                <table class="hours" aria-label="Opening hours">
+                  <tbody id="hours-body">
+                    <tr data-day="1"><td>Monday</td><td>7pm – 1am</td></tr>
+                    <tr data-day="2" class="off"><td>Tuesday</td><td>Closed</td></tr>
+                    <tr data-day="3"><td>Wednesday</td><td>7pm – 1am</td></tr>
+                    <tr data-day="4"><td>Thursday</td><td>7pm – 1am</td></tr>
+                    <tr data-day="5"><td>Friday</td><td>5pm – 2am</td></tr>
+                    <tr data-day="6"><td>Saturday</td><td>5pm – 2am</td></tr>
+                    <tr data-day="0"><td>Sunday</td><td>5pm – 2am</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li>
+              <div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></div>
+              <div><h3>WhatsApp</h3><p><a class="wa-link" href="https://wa.me/60167682646" target="_blank" rel="noopener">016-768 2646</a></p></div>
+            </li>
+            <li>
+              <div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-ig"/></svg></div>
+              <div><h3>Instagram</h3><p><a href="https://www.instagram.com/kalmabrew/" target="_blank" rel="noopener">@kalmabrew</a></p></div>
+            </li>
+          </ul>
+          <div class="visit-actions">
+            <a class="btn btn-amber" href="https://maps.app.goo.gl/u1f7ob4WeLNXJQxv8" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-nav"/></svg> Get directions
+            </a>
+          </div>
+        </div>
+        <div class="map reveal">
+          <iframe title="Map showing Kalma Brew Ipoh x Souv on Jalan Sultan Idris Shah" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=Kalma%20Brew%20Ipoh%20x%20Souv%2C%20Jalan%20Sultan%20Idris%20Shah%2C%20Ipoh&amp;ll=4.5967964,101.0845419&amp;z=17&amp;output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-inner">
+        <div class="reveal">
+          <h2>Planning a night out or <em>an event</em>?</h2>
+          <p>Ask about table bookings, renting the space or anything on the menu. We usually reply on WhatsApp.</p>
+        </div>
+        <div class="contact-side reveal">
+          <a class="btn btn-dark wa-link" href="https://wa.me/60167682646" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg> Contact us on WhatsApp</a>
+          <a class="phone-link wa-link" href="https://wa.me/60167682646" target="_blank" rel="noopener">016-768 2646</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">k</span>
+        <span class="brand-name">Kalma Brew<small>x Souv</small></span>
+      </a>
+      <span>3rd floor, 158 &amp; 160 Jalan Sultan Idris Shah, Ipoh</span>
+      <div class="foot-links">
+        <a href="https://www.instagram.com/kalmabrew/" target="_blank" rel="noopener">Instagram</a>
+        <a class="wa-link" href="https://wa.me/60167682646" target="_blank" rel="noopener">WhatsApp</a>
+        <span>© <span id="year">2026</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float wa-link" href="https://wa.me/60167682646" target="_blank" rel="noopener" aria-label="Chat with Kalma Brew on WhatsApp">
+    <svg aria-hidden="true"><use href="#i-wa"/></svg>
+  </a>
+
+  <script>
+    // WhatsApp links with a friendly pre-filled message
+    const waText = encodeURIComponent("Hi Kalma Brew! I found you through your website and I'd like to ask about ");
+    document.querySelectorAll('.wa-link').forEach(a => { a.href = `https://wa.me/60167682646?text=${waText}`; });
+
+    // Mobile nav
+    const toggle = document.querySelector('.menu-toggle');
+    const links = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    links.addEventListener('click', e => {
+      if (e.target.tagName === 'A') { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+    });
+
+    // Menu tabs (with arrow-key support)
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    function selectTab(tab) {
+      tabs.forEach(t => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      tab.focus({ preventScroll: true });
+    }
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') selectTab(tabs[(i + 1) % tabs.length]);
+        if (e.key === 'ArrowLeft') selectTab(tabs[(i - 1 + tabs.length) % tabs.length]);
+      });
+    });
+
+    // Open/closed status in Ipoh time. Hours run past midnight, so close is > 24.
+    const HOURS = { 0: [17, 26], 1: [19, 25], 2: null, 3: [19, 25], 4: [19, 25], 5: [17, 26], 6: [17, 26] };
+    const fmt = h => { h %= 24; return h === 0 ? '12am' : h < 12 ? `${h}am` : h === 12 ? '12pm' : `${h - 12}pm`; };
+    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }));
+    const day = now.getDay();
+    const t = now.getHours() + now.getMinutes() / 60;
+    const yday = HOURS[(day + 6) % 7];
+    const tday = HOURS[day];
+    let status, sub, open = false;
+    if (yday && t + 24 < yday[1]) { open = true; status = 'Open now'; sub = `Until ${fmt(yday[1])} tonight`; }
+    else if (tday && t >= tday[0]) { open = true; status = 'Open now'; sub = `Until ${fmt(tday[1])} tonight`; }
+    else if (tday) { status = 'Opening later'; sub = `Opens at ${fmt(tday[0])} today`; }
+    else {
+      let d = (day + 1) % 7; while (!HOURS[d]) d = (d + 1) % 7;
+      status = 'Closed today'; sub = `Opens ${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d]} ${fmt(HOURS[d][0])}`;
+    }
+    document.getElementById('open-status').textContent = status;
+    document.getElementById('open-sub').textContent = sub;
+    document.getElementById('open-dot').classList.toggle('closed', !open);
+    const todayRow = document.querySelector(`#hours-body tr[data-day="${day}"]`);
+    if (todayRow) todayRow.classList.add('today');
+    document.getElementById('year').textContent = now.getFullYear();
+
+    // Scroll reveal
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
